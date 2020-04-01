@@ -265,12 +265,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSRestBundle.git",
-                "reference": "957717e2f1de788470b3a00a0ae1d0a00b4b46ab"
+                "reference": "1e41345222b8c10ca25b6c57705f6da363368685"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/957717e2f1de788470b3a00a0ae1d0a00b4b46ab",
-                "reference": "957717e2f1de788470b3a00a0ae1d0a00b4b46ab",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/1e41345222b8c10ca25b6c57705f6da363368685",
+                "reference": "1e41345222b8c10ca25b6c57705f6da363368685",
                 "shasum": ""
             },
             "require": {
@@ -362,7 +362,7 @@
             "keywords": [
                 "rest"
             ],
-            "time": "2020-03-28T09:18:10+00:00"
+            "time": "2020-03-30T19:29:14+00:00"
         },
         {
             "name": "hoa/compiler",
