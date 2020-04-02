@@ -1,3 +1,13 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+process:
+  type: rest
+  #  resource: "@JYLCmsBundle/Resources/config/routing.yml"
+
+  resource: App\Controller\BooksController
+#  prefix:   /v1
+  name_prefix: v1_
+  defaults: {_format: json}
+

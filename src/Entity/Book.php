@@ -3,9 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Hateoas\Configuration\Annotation as Hateoas;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BookRepository")
+ *
+ * @Hateoas\Relation(name ="self", href = "expr(router.generate('v1_get_book', {id: object.getId()}))")
  *
  */
 class Book
