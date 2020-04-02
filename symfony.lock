@@ -267,6 +267,9 @@
     "symfony/event-dispatcher-contracts": {
         "version": "v2.0.1"
     },
+    "symfony/expression-language": {
+        "version": "v5.0.7"
+    },
     "symfony/filesystem": {
         "version": "v5.0.6"
     },
@@ -472,6 +475,12 @@
     },
     "twig/twig": {
         "version": "v3.0.3"
+    },
+    "willdurand/hateoas": {
+        "version": "3.6.0"
+    },
+    "willdurand/hateoas-bundle": {
+        "version": "2.1.0"
     },
     "willdurand/jsonp-callback-validator": {
         "version": "v1.1.0"

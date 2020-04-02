@@ -15,7 +15,8 @@
         "symfony/framework-bundle": "5.0.*",
         "symfony/orm-pack": "^1.0",
         "symfony/validator": "5.0.*",
-        "symfony/yaml": "5.0.*"
+        "symfony/yaml": "5.0.*",
+        "willdurand/hateoas-bundle": "^2.1"
     },
     "require-dev": {
         "symfony/debug-pack": "^1.0",
