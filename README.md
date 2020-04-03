@@ -22,20 +22,20 @@ Symfony 5 + FOSRestBundle + JSON Standard responses + working example
 ## About <a name = "about"></a>
 Symfony 5 skeleton to build REST APIs, inclusive of:
 
-- FOSRestBundle (friendsofsymfony/rest-bundle) to simplify the entire process
-- Hateoas Bundle (willdurand/hateoas-bundle) that specifies relation types for Web links
+- *FOSRestBundle* (friendsofsymfony/rest-bundle) to simplify the entire process
+- *Hateoas Bundle* (willdurand/hateoas-bundle) that specifies relation types for Web links
+- *Doctrine*
 
 
 This project is compliant with:
 - [Symfony Best Practices](https://symfony.com/doc/current/best_practices.html)
 - [HATEOAS](https://restfulapi.net/hateoas/), [RFC5988 (web links)](https://tools.ietf.org/html/rfc5988), [JSON HAL Model](http://stateless.co/hal_specification.html)
-
+- URIs versioning
 
 ## Getting Started <a name = "getting_started"></a>
 
 These instructions will get you a copy of the project up and running on your local machine 
-for development and testing purposes. See [deployment](#deployment) for notes on how to deploy
-the project on a live system.
+for development and testing purposes. 
 
 ### Prerequisites
 
@@ -66,9 +66,14 @@ php bin/console doctrine:migrations:migrate
 #### Get with Curl
 
 ```bash
-curl -H 'content-type: application/json' -v -X GET http://127.0.0.1:8000/books
-curl -H 'content-type: application/json' -v -X GET http://127.0.0.1:8000/books/2 
+curl -H 'content-type: application/json' -v -X GET http://127.0.0.1:8000/v1/books
+curl -H 'content-type: application/json' -v -X GET http://127.0.0.1:8000/v1/books/2 
 ```
+
+
+## Using it as skeleton <a name = "usage"></a>
+
+Add notes about how to use the system.
 
 
 ## Contributing <a name = "contributing"></a>
