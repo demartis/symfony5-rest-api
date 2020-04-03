@@ -1,4 +1,6 @@
 # Symfony 5 REST API skeleton
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdemartis%2Fsymfony5-rest-api.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdemartis%2Fsymfony5-rest-api?ref=badge_shield)
+
 Symfony 5 + FOSRestBundle + JSON Standard responses + working example
 
 
@@ -69,3 +71,7 @@ curl -H 'content-type: application/json' -v -X GET http://127.0.0.1:8000/books/2
 4. Push to the branch (`git push origin feature/fooBar`)
 5. Create a new Pull Request
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdemartis%2Fsymfony5-rest-api.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdemartis%2Fsymfony5-rest-api?ref=badge_large)
