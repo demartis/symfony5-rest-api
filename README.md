@@ -1,7 +1,15 @@
 # Symfony 5 REST API skeleton
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdemartis%2Fsymfony5-rest-api.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdemartis%2Fsymfony5-rest-api?ref=badge_shield)
 
 Symfony 5 + FOSRestBundle + JSON Standard responses + working example
+
+![Travis (.org)](https://img.shields.io/travis/demartis/symfony5-rest-api)
+![GitHub last commit](https://img.shields.io/github/last-commit/demartis/symfony5-rest-api.svg)
+![GitHub repo size in bytes](https://img.shields.io/github/repo-size/demartis/symfony5-rest-api.svg)
+![GitHub language count](https://img.shields.io/github/languages/count/demartis/symfony5-rest-api.svg)
+![GitHub top language](https://img.shields.io/github/languages/top/demartis/symfony5-rest-api)
+![PHP from Travis config](https://img.shields.io/travis/php-v/demartis/symfony5-rest-api/master)
+![GitHub](https://img.shields.io/github/license/demartis/symfony5-rest-api)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdemartis%2Fsymfony5-rest-api.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdemartis%2Fsymfony5-rest-api?ref=badge_shield)
 
 
 ## Table of Contents
@@ -42,7 +50,7 @@ What things you need to install the software and how to install them.
 git clone https://github.com/demartis/symfony5-rest-api/
 cd symfony5-rest-api
 cp .env.dist .env
->> edit .env if needed
+## edit .env if needed
 composer install
 symfony server:start
 ```
