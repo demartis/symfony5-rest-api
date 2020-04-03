@@ -2,9 +2,9 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
-process:
+book:
   type: rest
-  resource: App\Controller\BooksController
+  resource: App\Controller\BookController
   prefix: /v1
   name_prefix: v1_
   defaults: {_format: json}

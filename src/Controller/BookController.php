@@ -14,7 +14,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Router;
 
-class BooksController extends AbstractFOSRestController
+class BookController extends AbstractFOSRestController
 {
 
     public function cgetBooksAction(){
@@ -47,7 +47,7 @@ class BooksController extends AbstractFOSRestController
             ->setDebug($_SERVER['APP_DEBUG'])
             ->build()
             ->serialize($book, 'json');
-        
+
         return new Response($json, 200, array('Content-Type' => 'application/json'));
     }
 
