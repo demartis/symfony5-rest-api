@@ -43,12 +43,12 @@ General JTTP output format:
 
 ```json
 {
-  "status": "success|error",
-  "code": "HTTP status code",
-  "message": "HTTP status message",
-  "data|error": {
-    "your data": "data or error field only in case of success or error"
-  }
+    "status": "success|error",
+    "code": "HTTP status code",
+    "message": "HTTP status message",
+    "data|error": {
+        "your data": "data or error field only in case of success or error"
+    }
 }
 ```
 
@@ -104,14 +104,14 @@ Example - GET collection: GET /v1/books
 ``` 
 
 
-Example - error: Resource not found: GET /v1/books/433334
+Example - error: Resource not found: GET /v1/books/123123
 ```json
 {
     "status": "error",
     "code": 404,
     "message": "Not Found",
     "error": {
-        "details": "Resource 433334 not found"
+        "details": "Resource 123123 not found"
     }
 }
 ```
@@ -120,12 +120,12 @@ Example - error: Resource not found: GET /v1/books/433334
 Example - error: Route not found: GET /wrongroute123
 ```json
 {
-  "status": "error",
-  "code": "404",
-  "message": "Not Found",
-  "error": {
-    "details": "Resource 433334 not found"
-  }
+    "status": "error",
+    "code": 404,
+    "message": "Not Found",
+    "error": {
+        "details": "No route found for \"GET /wrongroute123\""
+    }
 }
 ```
 
