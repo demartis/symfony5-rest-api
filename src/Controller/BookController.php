@@ -15,20 +15,10 @@
 namespace App\Controller;
 
 use App\Entity\Book;
-use App\Utils\Jttp\JttpResponse;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
-use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\View\View;
-use Hateoas\HateoasBuilder;
-use Hateoas\Serializer\JsonHalSerializer;
-use http\Env\Request;
-use JMS\Serializer\SerializerBuilder;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\HttpException;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
-use Symfony\Component\Routing\Router;
 
 class BookController extends AbstractFOSRestController
 {
