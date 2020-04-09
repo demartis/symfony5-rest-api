@@ -32,6 +32,117 @@ This project is compliant with:
 - [HATEOAS](https://restfulapi.net/hateoas/), [RFC5988 (web links)](https://tools.ietf.org/html/rfc5988), [JSON HAL Model](http://stateless.co/hal_specification.html)
 - URIs versioning
 
+### JTTP Coherent output formats
+Inspired by [Jsend](https://github.com/omniti-labs/jsend), 
+we have set a similar very simple but more coherent and intelligible json format to wrap json responses.
+
+It is called JTTP, and it is compatible with HATEOAS, RFC5988 and HAL standards.
+See examples below.
+
+General JTTP output format:
+
+```json
+{
+  "status": "success|error",
+  "code": "HTTP status code",
+  "message": "HTTP status message",
+  "data|error": {
+    "your data": "data or error field only in case of success or error"
+  }
+}
+```
+
+Example - GET resource: GET /v1/books/1
+```json
+{
+    "status": "success",
+    "code": 200,
+    "message": "OK",
+    "data": {
+        "id": 1,
+        "title": "PHP & MySQL Novice to Ninja",
+        "_links": {
+            "self": {
+                "href": "/v1/books/1"
+            }
+        }
+    }
+}
+
+``` 
+
+
+Example - GET collection: GET /v1/books
+```json
+{
+    "status": "success",
+    "code": 200,
+    "message": "OK",
+    "data": [
+        {
+            "id": 1,
+            "title": "PHP & MySQL Novice to Ninja",
+            "_links": {
+                "self": {
+                    "href": "/v1/books/1"
+                }
+            }
+        },
+        {
+            "id": 2,
+            "title": "Head First PHP & MySQL",
+            "pages": 812,
+            "_links": {
+                "self": {
+                    "href": "/v1/books/2"
+                }
+            }
+        }
+    ]
+}
+
+``` 
+
+
+Example - error: Resource not found: GET /v1/books/433334
+```json
+{
+    "status": "error",
+    "code": 404,
+    "message": "Not Found",
+    "error": {
+        "details": "Resource 433334 not found"
+    }
+}
+```
+
+
+Example - error: Route not found: GET /wrongroute123
+```json
+{
+  "status": "error",
+  "code": "404",
+  "message": "Not Found",
+  "error": {
+    "details": "Resource 433334 not found"
+  }
+}
+```
+
+Example - 500 Internal Server Error
+```json
+{
+    "status": "error",
+    "code": 500,
+    "message": "Internal Server Error",
+    "error": {
+        "details": "Notice: Undefined variable: view"
+    }
+}
+```
+
+
+
 ## Getting Started <a name = "getting_started"></a>
 
 These instructions will get you a copy of the project up and running on your local machine 

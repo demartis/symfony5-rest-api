@@ -5,6 +5,7 @@
         "php": "^7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-json": "*",
         "friendsofsymfony/rest-bundle": "dev-master",
         "jms/serializer-bundle": "^3.5",
         "sensio/framework-extra-bundle": "^5.5",
