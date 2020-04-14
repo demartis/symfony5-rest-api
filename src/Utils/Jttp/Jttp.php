@@ -12,10 +12,10 @@
  *
  */
 
-namespace Jttp;
+namespace App\Utils\Jttp;
 
-use Jttp\Exception\InternalJttpException;
-use Jttp\Exception\MalformedJttpException;
+use App\Utils\Jttp\Exception\InternalJttpException;
+use App\Utils\Jttp\Exception\MalformedJttpException;
 
 class Jttp
 {

@@ -14,7 +14,7 @@
 
 namespace App\Handlers;
 
-use Jttp\Jttp;
+use App\Utils\Jttp\Jttp;
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\View\ViewHandler;
 use Psr\Log\LoggerAwareTrait;
@@ -44,6 +44,8 @@ class JttpHandler
             if(method_exists($view->getData(), 'getMessage')){
 
                 $errorContent["details"] = $view->getData()->getMessage();
+            }else{
+                $errorContent["details"] = $view->getData();
             }
             $jttpContent = Jttp::error($view->getStatusCode(), null, $errorContent )->toJson();
             $response = new Response($jttpContent, $view->getStatusCode(), $view->getHeaders());

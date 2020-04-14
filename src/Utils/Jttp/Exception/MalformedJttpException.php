@@ -12,7 +12,7 @@
  *
  */
 
-namespace Jttp\Exception;
+namespace App\Utils\Jttp\Exception;
 
 /**
  * MalformedJttpException
