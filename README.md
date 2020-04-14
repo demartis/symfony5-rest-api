@@ -102,7 +102,36 @@ Example - GET collection: GET /v1/books
 }
 
 ``` 
+Example - POST resource: POST /v1/books
 
+JSON (any other field will be ignored):
+```json
+{
+    "data": {
+        "title": "New Book about PHP",
+        "pages": 123
+    }
+}
+
+``` 
+Response:
+```json
+{
+    "status": "success",
+    "code": 200,
+    "message": "OK",
+    "data": {
+        "id": 3,
+        "title": "New Book about PHP",
+        "pages": 123,
+        "_links": {
+            "self": {
+                "href": "/v1/books/12"
+            }
+        }
+    }
+}
+```
 
 Example - error: Resource not found: GET /v1/books/123123
 ```json
@@ -140,7 +169,27 @@ Example - 500 Internal Server Error
     }
 }
 ```
-
+Example - form error - POST /v1/books
+```json
+{
+    "data": {
+        "pages": 123
+    }
+}
+```
+Response:
+```json
+{
+    "status": "error",
+    "code": 400,
+    "message": "Bad Request",
+    "error": {
+        "form": {
+            "title": "This value should not be blank."
+        }
+    }
+}
+```
 
 
 ## Getting Started <a name = "getting_started"></a>
