@@ -12,7 +12,7 @@
  *
  */
 
-namespace Jttp;
+namespace App\Utils\Jttp;
 
 use Symfony\Component\HttpFoundation\Response;
 
