@@ -23,11 +23,8 @@ use FOS\RestBundle\Controller\Annotations\RequestParam;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 
 use FOS\RestBundle\Request\ParamFetcher;
-use FOS\RestBundle\View\View;
-use Symfony\Component\Form\Exception\ExceptionInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 class BookController extends AbstractFOSRestController
@@ -71,7 +68,6 @@ class BookController extends AbstractFOSRestController
         $form = $this->createForm(BookType::class, $book);
         $requestBody=$paramFetcher->get('data');
 
-//        $form->handleRequest($request);
         $form->submit($requestBody);
 
         if ($form->isSubmitted() && $form->isValid()){
@@ -85,22 +81,7 @@ class BookController extends AbstractFOSRestController
             return $this->handleView($view);
 
         } else {
-////            throw new \Exception($form->getErrors(true,true));
-////            ExceptionInterface::
-////            throw new Exce
-//
-////            $data=$form->getErrors();
-//
-//            $data   = [];
-//            $errors = $form->getErrors(true);
-//
-//            foreach ($errors as $error) {
-//                $data[$error->getOrigin()->getName()][] = $error->getMessage();
-//            }
-////            $view = $this->view($form->getErrors(true), Response::HTTP_BAD_REQUEST);
-//            $view = $this->view($data, Response::HTTP_BAD_REQUEST);
-////            $view = $this->view(['drrr'=>'ewfwef'], Response::HTTP_BAD_REQUEST);
-//            return $this->handleView($view);
+
             throw new FormException($form);
         }
 

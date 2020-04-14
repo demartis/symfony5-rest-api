@@ -5,23 +5,22 @@ fos_rest:
 #    routing_loader: true
 #    view:
 #        view_response_listener:  true
-#    exception:
-#        codes:
-    exception:
-        codes:
-            'Symfony\Component\Routing\Exception\ResourceNotFoundException': 404
-#            'Symfony\Component\HttpKernel\Exception\UnsupportedMediaTypeHttpException': 404
-            'Doctrine\ORM\OptimisticLockException': HTTP_CONFLICT
-        messages:
-            'Symfony\Component\Routing\Exception\ResourceNotFoundException': true
 
-#            App\Exception\MyException: 403
+#    exception:
+##        enabled: true
+##        exception_controller: 'App\Controller\ExceptionController::showAction'
+#        codes:
+#            'Symfony\Component\Routing\Exception\ResourceNotFoundException': 404
+#            'Symfony\Component\HttpKernel\Exception\UnsupportedMediaTypeHttpException': 404
+#            'Doctrine\ORM\OptimisticLockException': HTTP_CONFLICT
+#            'Symfony\Component\HttpKernel\Exception\BadRequestHttpException': 404
+#            'App\Exception\MyException': 403
 #        messages:
-#            App\Exception\MyException: Forbidden area.
+#            'Symfony\Component\Routing\Exception\ResourceNotFoundException': true
+
     service:
         view_handler: app.view_handler
 
     format_listener:
         rules:
             - { path: ^/v1, prefer_extension: true, fallback_format: json, priorities: [ json, html ] }
-#            - { path: ^/, prefer_extension: true, fallback_format: json, priorities: [ json, html ] }
