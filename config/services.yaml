@@ -29,6 +29,12 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
+    kernel.listener.exception_listener:
+        class: App\Listener\ExceptionListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
+        calls:
+            - [ setLogger, [ '@logger' ] ]
     app.jttp_handler:
         class: App\Handlers\JttpHandler
         arguments:
