@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+
+  db:
+    build:
+      context: ./docker/db
+    environment:
+      - MYSQL_DATABASE=${DATABASE_NAME}
+      - MYSQL_USER=${DATABASE_USER}
+      - MYSQL_PASSWORD=${DATABASE_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DATABASE_ROOT_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./docker/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./docker/db/.data:/var/lib/mysql
+
+  php-fpm:
+    build:
+      context: ./docker/php-fpm
+    depends_on:
+      - db
+    environment:
+      - APP_ENV=${APP_ENV}
+      - APP_SECRET=${APP_SECRET}
+#      - DATABASE_URL=mysql://${DATABASE_USER}:${DATABASE_PASSWORD}@database:3306/${DATABASE_NAME}?serverVersion=5.7
+      - DATABASE_URL=sqlite:///%kernel.project_dir%/var/app.db
+    volumes:
+      - ./:/var/www:cached
+      - /var/www/var/cache
+#      - /var/www/vendor
+      - ./docker/.logs/symfony:/var/www/var/log:cached
+
+#    tmpfs:
+#      - /var/www/vendor
+#      - /var/www/var/cache
+
+  nginx:
+    build:
+      context: ./docker/nginx
+    volumes:
+      - ./:/var/www:cached
+      - /var/www/var
+      - /var/www/vendor
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/sites/:/etc/nginx/sites-available
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d
+      - ./docker/.logs/nginx:/var/log/nginx
+    depends_on:
+      - php-fpm
+    ports:
+      - "80:80"
