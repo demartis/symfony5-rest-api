@@ -23,16 +23,15 @@ use FOS\RestBundle\Controller\Annotations\RequestParam;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 
 use FOS\RestBundle\Request\ParamFetcher;
-use FOS\RestBundle\View\View;
-use Symfony\Component\Form\Exception\ExceptionInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 class BookController extends AbstractFOSRestController
 {
 
+    /**
+     * @return Response
+     */
     public function cgetBooksAction(){
         $em = $this->getDoctrine()->getManager();
         $books = $em->getRepository(Book::class)->findAll();
@@ -40,12 +39,15 @@ class BookController extends AbstractFOSRestController
         return $this->handleView($view);
     }
 
+    /**
+     * @param $id
+     * @return Response
+     */
     public function getBookAction($id){
         $em = $this->getDoctrine()->getManager();
         $book = $em->getRepository(Book::class)->find($id);
 
         if (!$book) {
-            // throw new HttpException(404, "Resource $id not found");
             throw new ResourceNotFoundException( "Resource $id not found");
         }
 
@@ -54,24 +56,48 @@ class BookController extends AbstractFOSRestController
     }
 
     /**
-     *
      * @RequestParam(name="data", nullable=false)
      *
-     * @param Request $request
      * @param ParamFetcher $paramFetcher
-     *
-     * @throws \Exception
+     * @throws FormException
      * @return Response
-     *
      */
-    public function postBookAction(Request $request, ParamFetcher $paramFetcher){
+    public function postBookAction(ParamFetcher $paramFetcher){
 
         $book = new Book();
+        return $this->save($book, $paramFetcher);
+    }
+
+    /**
+     * @RequestParam(name="data", nullable=false)
+     *
+     * @param int $id
+     * @param ParamFetcher $paramFetcher
+     * @throws FormException
+     * @return Response
+     */
+    public function putBookAction($id, ParamFetcher $paramFetcher){
+
+        $em = $this->getDoctrine()->getManager();
+        $book = $em->getRepository(Book::class)->find($id);
+
+        if (!$book) {
+            throw new ResourceNotFoundException("Resource $id not found");
+        }
+
+        return $this->save($book, $paramFetcher);
+    }
+
+    /**
+     * @param Book $book
+     * @param ParamFetcher $paramFetcher
+     * @return Response
+     */
+    private function save(Book $book, ParamFetcher $paramFetcher){
 
         $form = $this->createForm(BookType::class, $book);
         $requestBody=$paramFetcher->get('data');
 
-//        $form->handleRequest($request);
         $form->submit($requestBody);
 
         if ($form->isSubmitted() && $form->isValid()){
@@ -85,24 +111,8 @@ class BookController extends AbstractFOSRestController
             return $this->handleView($view);
 
         } else {
-////            throw new \Exception($form->getErrors(true,true));
-////            ExceptionInterface::
-////            throw new Exce
-//
-////            $data=$form->getErrors();
-//
-//            $data   = [];
-//            $errors = $form->getErrors(true);
-//
-//            foreach ($errors as $error) {
-//                $data[$error->getOrigin()->getName()][] = $error->getMessage();
-//            }
-////            $view = $this->view($form->getErrors(true), Response::HTTP_BAD_REQUEST);
-//            $view = $this->view($data, Response::HTTP_BAD_REQUEST);
-////            $view = $this->view(['drrr'=>'ewfwef'], Response::HTTP_BAD_REQUEST);
-//            return $this->handleView($view);
             throw new FormException($form);
         }
-
     }
+
 }
