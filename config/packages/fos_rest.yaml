@@ -5,11 +5,21 @@ fos_rest:
 #    routing_loader: true
 #    view:
 #        view_response_listener:  true
+
 #    exception:
+##        enabled: true
+##        exception_controller: 'App\Controller\ExceptionController::showAction'
 #        codes:
-#            App\Exception\MyException: 403
+#            'Symfony\Component\Routing\Exception\ResourceNotFoundException': 404
+#            'Symfony\Component\HttpKernel\Exception\UnsupportedMediaTypeHttpException': 404
+#            'Doctrine\ORM\OptimisticLockException': HTTP_CONFLICT
+#            'Symfony\Component\HttpKernel\Exception\BadRequestHttpException': 404
+#            'App\Exception\MyException': 403
 #        messages:
-#            App\Exception\MyException: Forbidden area.
+#            'Symfony\Component\Routing\Exception\ResourceNotFoundException': true
+
+    service:
+        view_handler: app.view_handler
 
     format_listener:
         rules:

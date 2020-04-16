@@ -8,8 +8,7 @@ use Hateoas\Configuration\Annotation as Hateoas;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BookRepository")
  *
- * @Hateoas\Relation(name ="self", href = "expr(router.generate('v1_get_book', {id: object.getId()}))")
- *
+ * @Hateoas\Relation(name ="self", href = "expr(container.get('router').generate( 'v1_get_book' , {id: object.getId()}) )")
  */
 class Book
 {

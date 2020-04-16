@@ -32,6 +32,196 @@ This project is compliant with:
 - [HATEOAS](https://restfulapi.net/hateoas/), [RFC5988 (web links)](https://tools.ietf.org/html/rfc5988), [JSON HAL Model](http://stateless.co/hal_specification.html)
 - URIs versioning
 
+### JTTP Coherent output formats
+Inspired by [Jsend](https://github.com/omniti-labs/jsend), 
+we have set a similar very simple but more coherent and intelligible json format to wrap json responses.
+
+It is called JTTP, and it is compatible with HATEOAS, RFC5988 and HAL standards.
+See examples below.
+
+General JTTP output format:
+
+```json
+{
+    "status": "success|error",
+    "code": "HTTP status code",
+    "message": "HTTP status message",
+    "data|error": {
+        "your data": "data or error field only in case of success or error"
+    }
+}
+```
+
+Example - GET resource: GET /v1/books/1
+```json
+{
+    "status": "success",
+    "code": 200,
+    "message": "OK",
+    "data": {
+        "id": 1,
+        "title": "PHP & MySQL Novice to Ninja",
+        "_links": {
+            "self": {
+                "href": "/v1/books/1"
+            }
+        }
+    }
+}
+
+``` 
+
+
+Example - GET collection: GET /v1/books
+```json
+{
+    "status": "success",
+    "code": 200,
+    "message": "OK",
+    "data": [
+        {
+            "id": 1,
+            "title": "PHP & MySQL Novice to Ninja",
+            "_links": {
+                "self": {
+                    "href": "/v1/books/1"
+                }
+            }
+        },
+        {
+            "id": 2,
+            "title": "Head First PHP & MySQL",
+            "pages": 812,
+            "_links": {
+                "self": {
+                    "href": "/v1/books/2"
+                }
+            }
+        }
+    ]
+}
+
+``` 
+Example - POST resource: POST /v1/books
+
+JSON (any other field will be ignored):
+```json
+{
+    "data": {
+        "title": "New Book about PHP",
+        "pages": 123
+    }
+}
+
+``` 
+Response:
+```json
+{
+    "status": "success",
+    "code": 200,
+    "message": "OK",
+    "data": {
+        "id": 3,
+        "title": "New Book about PHP",
+        "pages": 123,
+        "_links": {
+            "self": {
+                "href": "/v1/books/12"
+            }
+        }
+    }
+}
+```
+Example - PUT resource: PUT /v1/books/1
+
+JSON (any other field will be ignored):
+```json
+{
+    "data": {
+        "title": "Edit title",
+        "pages": 1000
+    }
+}
+
+``` 
+Response:
+```json
+{
+    "status": "success",
+    "code": 200,
+    "message": "OK",
+    "data": {
+        "id": 1,
+        "title": "Edit title",
+        "pages": 1000,
+        "_links": {
+            "self": {
+                "href": "/v1/books/1"
+            }
+        }
+    }
+}
+```
+
+Example - error: Resource not found: GET /v1/books/123123
+```json
+{
+    "status": "error",
+    "code": 404,
+    "message": "Not Found",
+    "error": {
+        "details": "Resource 123123 not found"
+    }
+}
+```
+
+
+Example - error: Route not found: GET /wrongroute123
+```json
+{
+    "status": "error",
+    "code": 404,
+    "message": "Not Found",
+    "error": {
+        "details": "No route found for \"GET /wrongroute123\""
+    }
+}
+```
+
+Example - 500 Internal Server Error
+```json
+{
+    "status": "error",
+    "code": 500,
+    "message": "Internal Server Error",
+    "error": {
+        "details": "Notice: Undefined variable: view"
+    }
+}
+```
+Example - form error - POST /v1/books
+```json
+{
+    "data": {
+        "pages": 123
+    }
+}
+```
+Response:
+```json
+{
+    "status": "error",
+    "code": 400,
+    "message": "Bad Request",
+    "error": {
+        "form": {
+            "title": "This value should not be blank."
+        }
+    }
+}
+```
+
+
 ## Getting Started <a name = "getting_started"></a>
 
 These instructions will get you a copy of the project up and running on your local machine 
@@ -88,3 +278,8 @@ Add notes about how to use the system.
 
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdemartis%2Fsymfony5-rest-api.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdemartis%2Fsymfony5-rest-api?ref=badge_large)
+
+
+
+
+ /Applications/MAMP/bin/php/php7.2.22/bin/php -c "/Library/Application Support/appsolute/MAMP PRO/conf/php.ini" /usr/local/bin/composer update 
