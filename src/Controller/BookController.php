@@ -64,6 +64,35 @@ class BookController extends AbstractFOSRestController
     public function postBookAction(Request $request, ParamFetcher $paramFetcher){
 
         $book = new Book();
+        return $this->save($book, $paramFetcher);
+    }
+
+    /**
+     * @RequestParam(name="data", nullable=false)
+     *
+     * @param int $id
+     * @param ParamFetcher $paramFetcher
+     * @throws FormException
+     * @return Response
+     */
+    public function putBookAction($id, ParamFetcher $paramFetcher){
+
+        $em = $this->getDoctrine()->getManager();
+        $book = $em->getRepository(Book::class)->find($id);
+
+        if (!$book) {
+            throw new ResourceNotFoundException("Resource $id not found");
+        }
+
+        return $this->save($book, $paramFetcher);
+    }
+
+    /**
+     * @param Book $book
+     * @param ParamFetcher $paramFetcher
+     * @return Response
+     */
+    private function save(Book $book, ParamFetcher $paramFetcher){
 
         $form = $this->createForm(BookType::class, $book);
         $requestBody=$paramFetcher->get('data');

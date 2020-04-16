@@ -132,6 +132,36 @@ Response:
     }
 }
 ```
+Example - PUT resource: PUT /v1/books/1
+
+JSON (any other field will be ignored):
+```json
+{
+    "data": {
+        "title": "Edit title",
+        "pages": 1000
+    }
+}
+
+``` 
+Response:
+```json
+{
+    "status": "success",
+    "code": 200,
+    "message": "OK",
+    "data": {
+        "id": 1,
+        "title": "Edit title",
+        "pages": 1000,
+        "_links": {
+            "self": {
+                "href": "/v1/books/1"
+            }
+        }
+    }
+}
+```
 
 Example - error: Resource not found: GET /v1/books/123123
 ```json
@@ -248,3 +278,8 @@ Add notes about how to use the system.
 
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdemartis%2Fsymfony5-rest-api.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdemartis%2Fsymfony5-rest-api?ref=badge_large)
+
+
+
+
+ /Applications/MAMP/bin/php/php7.2.22/bin/php -c "/Library/Application Support/appsolute/MAMP PRO/conf/php.ini" /usr/local/bin/composer update 
