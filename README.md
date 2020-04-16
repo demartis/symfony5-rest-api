@@ -233,6 +233,7 @@ What things you need to install the software and how to install them.
 - PHP 7.2.5+
 - [composer](https://getcomposer.org/download/)
 - [symfony](https://symfony.com/doc/current/setup.html)
+- docker (optional)
 
 ### Installing
 
@@ -244,6 +245,17 @@ cp .env.dist .env
 composer install
 symfony server:start
 ```
+### Installing (alternative with Docker)
+
+```bash
+git clone https://github.com/demartis/symfony5-rest-api/
+cd symfony5-rest-api
+cp .env.dist .env
+## edit .env if needed
+docker-compose build
+docker-compose up
+```
+
 
 ### Running the example
 
