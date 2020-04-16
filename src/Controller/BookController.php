@@ -23,13 +23,15 @@ use FOS\RestBundle\Controller\Annotations\RequestParam;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 
 use FOS\RestBundle\Request\ParamFetcher;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 class BookController extends AbstractFOSRestController
 {
 
+    /**
+     * @return Response
+     */
     public function cgetBooksAction(){
         $em = $this->getDoctrine()->getManager();
         $books = $em->getRepository(Book::class)->findAll();
@@ -37,12 +39,15 @@ class BookController extends AbstractFOSRestController
         return $this->handleView($view);
     }
 
+    /**
+     * @param $id
+     * @return Response
+     */
     public function getBookAction($id){
         $em = $this->getDoctrine()->getManager();
         $book = $em->getRepository(Book::class)->find($id);
 
         if (!$book) {
-            // throw new HttpException(404, "Resource $id not found");
             throw new ResourceNotFoundException( "Resource $id not found");
         }
 
@@ -51,17 +56,13 @@ class BookController extends AbstractFOSRestController
     }
 
     /**
-     *
      * @RequestParam(name="data", nullable=false)
      *
-     * @param Request $request
      * @param ParamFetcher $paramFetcher
-     *
-     * @throws \Exception
+     * @throws FormException
      * @return Response
-     *
      */
-    public function postBookAction(Request $request, ParamFetcher $paramFetcher){
+    public function postBookAction(ParamFetcher $paramFetcher){
 
         $book = new Book();
         return $this->save($book, $paramFetcher);
@@ -110,9 +111,8 @@ class BookController extends AbstractFOSRestController
             return $this->handleView($view);
 
         } else {
-
             throw new FormException($form);
         }
-
     }
+
 }

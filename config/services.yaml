@@ -35,6 +35,7 @@ services:
             - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
         calls:
             - [ setLogger, [ '@logger' ] ]
+
     app.jttp_handler:
         class: App\Handlers\JttpHandler
         arguments:
