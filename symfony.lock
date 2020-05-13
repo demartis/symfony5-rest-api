@@ -87,6 +87,9 @@
             "config/packages/fos_rest.yaml"
         ]
     },
+    "handcraftedinthealps/rest-routing-bundle": {
+        "version": "1.0.0-beta1"
+    },
     "hoa/compiler": {
         "version": "3.17.08.08"
     },
@@ -217,7 +220,7 @@
         "version": "v5.0.6"
     },
     "symfony/debug": {
-        "version": "v4.4.6"
+        "version": "v4.4.8"
     },
     "symfony/debug-bundle": {
         "version": "4.1",

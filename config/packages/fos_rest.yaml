@@ -24,3 +24,13 @@ fos_rest:
     format_listener:
         rules:
             - { path: ^/v1, prefer_extension: true, fallback_format: json, priorities: [ json, html ] }
+
+handcraftedinthealps_rest_routing:
+    routing_loader:
+        default_format: 'json'
+        prefix_methods: true
+        include_format: true
+        # optional set supported formats else the configured one from fos_rest are used if installed:
+        # formats:
+        #     json: true
+        #     xml: true
