@@ -180,9 +180,6 @@
     "symfony/css-selector": {
         "version": "v5.0.6"
     },
-    "symfony/debug": {
-        "version": "v4.4.8"
-    },
     "symfony/debug-bundle": {
         "version": "4.1",
         "recipe": {
