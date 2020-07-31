@@ -50,4 +50,4 @@ services:
     depends_on:
       - php-fpm
     ports:
-      - "80:80"
+      - "8000:80"

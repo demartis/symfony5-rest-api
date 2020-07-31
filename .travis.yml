@@ -5,6 +5,9 @@ language: php
 #    - .phpunit
 #    - $HOME/.composer/cache/files
 
+services:
+  - docker
+
 php:
   - 7.2
   - 7.3
@@ -13,9 +16,8 @@ php:
 before_script:
   - composer install
   - cp .env.dist .env
-  - curl -sS https://get.symfony.com/cli/installer | bash
-  - symfony version
-  - symfony server:start
+  - docker-compose pull && docker-compose build && docker-compose up -d
+  - docker-compose ps
 
 script:
   - ./bin/phpunit
