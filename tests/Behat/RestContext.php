@@ -68,7 +68,7 @@ final class RestContext implements Context
     {
         if ((string) $this->_response->getStatusCode() !== $arg1) {
             throw new \Exception('HTTP code does not match ' . $arg1 .
-                ' (actual: ' . $this->_response->getStatusCode() . ')' . substr($this->_response->getBody(),0,10000));
+                ' (actual: ' . $this->_response->getStatusCode() . ')' . substr($this->_response->getBody()->getContents(),0,10000));
         }
     }
 
