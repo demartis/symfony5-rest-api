@@ -7,6 +7,7 @@
         "ext-iconv": "*",
         "ext-json": "*",
         "friendsofsymfony/rest-bundle": "3.0.*",
+        "guzzlehttp/guzzle": "^7.0",
         "handcraftedinthealps/rest-routing-bundle": "^1.0",
         "jms/serializer-bundle": "^3.5",
         "sensio/framework-extra-bundle": "^5.5",
