@@ -269,9 +269,6 @@
     "symfony/http-kernel": {
         "version": "v5.0.6"
     },
-    "symfony/inflector": {
-        "version": "v5.0.7"
-    },
     "symfony/intl": {
         "version": "v5.0.7"
     },
