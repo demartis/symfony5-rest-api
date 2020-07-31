@@ -5,3 +5,9 @@ services:
 
     App\Tests\Behat\:
         resource: '../tests/Behat/*'
+
+    App\Tests\Behat\RestContext:
+        public: true
+        arguments:
+            # - "%kernel.environment%"
+            $base_url: "%env(BEHAT_BASE_URL)%"

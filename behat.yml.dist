@@ -2,6 +2,7 @@ default:
     suites:
         default:
             contexts:
+                - App\Tests\Behat\RestContext
                 - App\Tests\Behat\DemoContext
 
     extensions:
