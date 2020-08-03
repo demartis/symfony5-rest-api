@@ -22,7 +22,6 @@
         "willdurand/hateoas-bundle": "^2.1"
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "^3.3",
         "friends-of-behat/symfony-extension": "^2.1",
         "symfony/debug-pack": "^1.0",
         "symfony/maker-bundle": "^1.14",
