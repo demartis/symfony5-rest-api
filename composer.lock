@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0f08d98ff1b5a15a72c0f7511e63f88b",
+    "content-hash": "2cdd2ca9a56a34c7e4001c4d6c29cda9",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -6502,6 +6502,49 @@
             "time": "2020-07-25T13:18:53+00:00"
         },
         {
+            "name": "peekmo/jsonpath",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Peekmo/JsonPath.git",
+                "reference": "0b339171b7eab5791bbb71549305a7e0e2a4ca52"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Peekmo/JsonPath/zipball/0b339171b7eab5791bbb71549305a7e0e2a4ca52",
+                "reference": "0b339171b7eab5791bbb71549305a7e0e2a4ca52",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.1"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-0": {
+                    "Peekmo\\JsonPath": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stefan Goessner"
+                },
+                {
+                    "name": "Axel Anceau",
+                    "email": "axel.anceau@gmail.com"
+                }
+            ],
+            "description": "Library to use JsonPath",
+            "homepage": "https://github.com/Peekmo/JsonPath",
+            "time": "2015-04-30T05:56:14+00:00"
+        },
+        {
             "name": "symfony/browser-kit",
             "version": "v5.1.3",
             "source": {
@@ -7738,7 +7781,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "peekmo/jsonpath": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
