@@ -9,6 +9,7 @@ use Behat\Behat\Tester\Exception\PendingException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\TransferException;
+use Peekmo\JsonPath\JsonStore;
 use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,6 +29,7 @@ final class RestContext implements Context
     /** @var \GuzzleHttp\Psr7\Response */
     private $_response;
     private $_bodyDecoded;
+    public $_jsonStore;
 
     /** @var Client */
     private $_client;
@@ -80,6 +82,7 @@ final class RestContext implements Context
         try {
             $body=json_decode($this->_response->getBody()->getContents(), true);
             $this->_bodyDecoded=$body;
+            $this->_jsonStore=new JsonStore($this->_bodyDecoded);
         }catch (\Exception $e ){
             if($body=$this->_response->getBody()){
                 print "$body\n";
@@ -87,5 +90,38 @@ final class RestContext implements Context
             }
         }
     }
+
+    /**
+     * @Then json body have :path = :value
+     */
+    public function jsonBodyHavePathWithValue($path, $value)
+    {
+        $res=$this->_jsonStore->get($path);
+        if(!count($res)){
+            // print_r($res);
+            // $body=$this->_response->getBody()->getContents();
+            // print_r($body);
+            throw new \Exception("the body does not contain: $path");
+        } elseif($res[0] != $value) {
+            throw new \Exception("$path is not $value, ". print_r($res, true));
+        }
+    }
+
+    /**
+     * @Then the count of :path is :value
+     */
+    public function theCountOfIs($path, $value)
+    {
+        $res=$this->_jsonStore->get($path);
+        if(!count($res)){
+            // print_r($res);
+            // $body=$this->_response->getBody()->getContents();
+            // print_r($body);
+            throw new \Exception("the body does not contain: $path");
+        } elseif(count($res[0]) != $value) {
+            throw new \Exception("$path is not ".count($res[0]).", ". print_r($res[0], true));
+        }
+    }
+
 
 }
