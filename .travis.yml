@@ -1,9 +1,18 @@
 language: php
 
-#cache:
-#  directories:
-#    - .phpunit
-#    - $HOME/.composer/cache/files
+#services:
+#  - docker
+#  -
+
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+    - $HOME/symfony-bridge/.phpunit
+
+env:
+  global:
+    - PHPUNIT_FLAGS="-v"
+    - SYMFONY_PHPUNIT_DIR="$HOME/symfony-bridge/.phpunit"
 
 php:
   - 7.2
@@ -13,9 +22,19 @@ php:
 before_script:
   - composer install
   - cp .env.dist .env
+  - curl -sS https://get.symfony.com/cli/installer | bash
+  - /home/travis/.symfony/bin/symfony version
+  - /home/travis/.symfony/bin/symfony server:start --no-tls -d
+  - bin/console doctrine:database:create --no-interaction
+  - bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration
+#  - docker-compose pull && docker-compose build && docker-compose up -d
+#  - docker-compose ps
+#  - docker-compose exec php-fpm php bin/console doctrine:database:create --no-interaction
+#  - docker-compose exec php-fpm php bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration
 
 script:
   - ./bin/phpunit
+  - ./vendor/bin/behat
 
 
 

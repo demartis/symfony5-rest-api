@@ -23,6 +23,7 @@ use FOS\RestBundle\Controller\Annotations\RequestParam;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 
 use FOS\RestBundle\Request\ParamFetcher;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
@@ -56,27 +57,28 @@ class BookController extends AbstractFOSRestController
     }
 
     /**
-     * @RequestParam(name="data", nullable=false)
-     *
-     * @param ParamFetcher $paramFetcher
+     * @param Request $request
      * @throws FormException
      * @return Response
      */
-    public function postBookAction(ParamFetcher $paramFetcher){
+    public function postBookAction(Request $request){
+        // @TODO: restore ParamFetcher
+        // @TODO: workaround for https://github.com/FriendsOfSymfony/FOSRestBundle/issues/2258
 
         $book = new Book();
-        return $this->save($book, $paramFetcher);
+        $body=json_decode($request->getContent(), true);
+        return $this->save($book, $body['data']);
     }
 
     /**
-     * @RequestParam(name="data", nullable=false)
-     *
      * @param int $id
-     * @param ParamFetcher $paramFetcher
+     * @param Request $request
      * @throws FormException
      * @return Response
      */
-    public function putBookAction($id, ParamFetcher $paramFetcher){
+    public function putBookAction($id, Request $request){
+        // @TODO: restore ParamFetcher
+        // @TODO: workaround for https://github.com/FriendsOfSymfony/FOSRestBundle/issues/2258
 
         $em = $this->getDoctrine()->getManager();
         $book = $em->getRepository(Book::class)->find($id);
@@ -85,18 +87,20 @@ class BookController extends AbstractFOSRestController
             throw new ResourceNotFoundException("Resource $id not found");
         }
 
-        return $this->save($book, $paramFetcher);
+        $body=json_decode($request->getContent(), true);
+        return $this->save($book, $body['data']);
     }
 
     /**
      * @param Book $book
-     * @param ParamFetcher $paramFetcher
+     * @param $data
      * @return Response
      */
-    private function save(Book $book, ParamFetcher $paramFetcher){
+    private function save(Book $book, array $data){
 
         $form = $this->createForm(BookType::class, $book);
-        $requestBody=$paramFetcher->get('data');
+        // $requestBody=$paramFetcher->get('data');
+        $requestBody = $data;
 
         $form->submit($requestBody);
 
