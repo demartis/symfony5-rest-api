@@ -7,6 +7,7 @@
         "ext-iconv": "*",
         "ext-json": "*",
         "friendsofsymfony/rest-bundle": "3.0.*",
+        "guzzlehttp/guzzle": "^7.0",
         "handcraftedinthealps/rest-routing-bundle": "^1.0",
         "jms/serializer-bundle": "^3.5",
         "sensio/framework-extra-bundle": "^5.5",
@@ -21,6 +22,8 @@
         "willdurand/hateoas-bundle": "^2.1"
     },
     "require-dev": {
+        "friends-of-behat/symfony-extension": "^2.1",
+        "peekmo/jsonpath": "dev-master",
         "symfony/debug-pack": "^1.0",
         "symfony/maker-bundle": "^1.14",
         "symfony/test-pack": "^1.0"
