@@ -9,11 +9,13 @@ use Behat\Behat\Tester\Exception\PendingException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Exception\TransferException;
+use InvalidArgumentException;
 use Peekmo\JsonPath\JsonStore;
 use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\KernelInterface;
+use Behat\Gherkin\Node\PyStringNode;
 
 /**
  * This context class contains the definitions of the steps used by the demo
@@ -43,12 +45,12 @@ final class RestContext implements Context
 //        throw  new \Exception("nenne: ".$base_url);
     }
     /**
-     * @When I run GET on :arg1
+     * @When I run GET on :url
      */
-    public function iRunGetOn($arg1)
+    public function iRunGet($url)
     {
         try {
-            $this->_response = $this->_client->get($arg1);
+            $this->_response = $this->_client->get($url);
 
         } catch (RequestException $e) {
 
@@ -62,6 +64,36 @@ final class RestContext implements Context
             throw $e;
         }
     }
+
+    /**
+     * @When I run POST on :url with json
+     */
+    public function iRunPostWithJson($url, PyStringNode $string)
+    {
+        try {
+
+            $postParamArray = json_decode($string->getRaw(), true);
+            if (json_last_error() != JSON_ERROR_NONE) {
+                print $string->getRaw();
+                throw new InvalidArgumentException("JSON not well formed: [" . json_last_error(). "]:" . json_last_error_msg());
+            }
+            $headers = [
+                'json' => $postParamArray
+            ];
+
+            $response = $this->_client->post($url, $headers);
+            $this->_response = $response;
+        } catch (RequestException $e) { //4xx //5xx network
+            if ($e->hasResponse()) {
+                $this->_response = $e->getResponse();
+            } else {
+                throw $e;
+            }
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+
 
     /**
      * @Then the status code is :arg1
@@ -118,8 +150,8 @@ final class RestContext implements Context
             // $body=$this->_response->getBody()->getContents();
             // print_r($body);
             throw new \Exception("the body does not contain: $path");
-        } elseif(count($res[0]) != $value) {
-            throw new \Exception("$path is not ".count($res[0]).", ". print_r($res[0], true));
+        } elseif(count($res) != $value && !(count($res)==1 && empty($res[0]) && $value==0)) {
+            throw new \Exception("$path is not $value, but ".count($res).": ". print_r($res, true));
         }
     }
 
