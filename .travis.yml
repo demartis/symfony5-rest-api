@@ -24,7 +24,7 @@ before_script:
   - cp .env.dist .env
   - curl -sS https://get.symfony.com/cli/installer | bash
   - /home/travis/.symfony/bin/symfony version
-  - /home/travis/.symfony/bin/symfony server:start
+  - /home/travis/.symfony/bin/symfony server:start --no-tls -d
 #  - docker-compose pull && docker-compose build && docker-compose up -d
 #  - docker-compose ps
 #  - docker-compose exec php-fpm php bin/console doctrine:database:create --no-interaction
