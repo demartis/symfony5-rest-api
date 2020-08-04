@@ -66,9 +66,9 @@ final class RestContext implements Context
     }
 
     /**
-     * @When I run POST on :url with json
+     * @When I run :method on :url with json
      */
-    public function iRunPostWithJson($url, PyStringNode $string)
+    public function iRunRestWithJson($method, $url, PyStringNode $string)
     {
         try {
 
@@ -81,7 +81,7 @@ final class RestContext implements Context
                 'json' => $postParamArray
             ];
 
-            $response = $this->_client->post($url, $headers);
+            $response = $this->_client->request($method, $url, $headers);
             $this->_response = $response;
         } catch (RequestException $e) { //4xx //5xx network
             if ($e->hasResponse()) {
@@ -93,7 +93,6 @@ final class RestContext implements Context
             throw $e;
         }
     }
-
 
     /**
      * @Then the status code is :arg1
