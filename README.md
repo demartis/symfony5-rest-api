@@ -30,14 +30,11 @@ Symfony 5 skeleton to build REST APIs, inclusive of:
 This project is compliant with:
 - [Symfony Best Practices](https://symfony.com/doc/current/best_practices.html)
 - [HATEOAS](https://restfulapi.net/hateoas/), [RFC5988 (web links)](https://tools.ietf.org/html/rfc5988), [JSON HAL Model](http://stateless.co/hal_specification.html)
+- [JTTP](https://github.com/demartis/jttp)
 - URIs versioning
 
 ### JTTP Coherent output formats
-Inspired by [Jsend](https://github.com/omniti-labs/jsend), 
-we have set a similar very simple but more coherent and intelligible json format to wrap json responses.
-
-It is called JTTP, and it is compatible with HATEOAS, RFC5988 and HAL standards.
-See examples below.
+[JTTP](https://github.com/demartis/jttp) is the default protocol 
 
 General JTTP output format:
 
