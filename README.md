@@ -288,7 +288,3 @@ Add notes about how to use the system.
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdemartis%2Fsymfony5-rest-api.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdemartis%2Fsymfony5-rest-api?ref=badge_large)
 
-
-
-
- /Applications/MAMP/bin/php/php7.2.22/bin/php -c "/Library/Application Support/appsolute/MAMP PRO/conf/php.ini" /usr/local/bin/composer update 
