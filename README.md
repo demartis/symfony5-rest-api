@@ -2,12 +2,10 @@
 
 Symfony 5 + FOSRestBundle + JSON Standard responses + working example
 
-![Travis (.org)](https://img.shields.io/travis/demartis/symfony5-rest-api)
 ![GitHub last commit](https://img.shields.io/github/last-commit/demartis/symfony5-rest-api.svg)
 ![GitHub repo size in bytes](https://img.shields.io/github/repo-size/demartis/symfony5-rest-api.svg)
 ![GitHub language count](https://img.shields.io/github/languages/count/demartis/symfony5-rest-api.svg)
 ![GitHub top language](https://img.shields.io/github/languages/top/demartis/symfony5-rest-api)
-![PHP from Travis config](https://img.shields.io/travis/php-v/demartis/symfony5-rest-api/master)
 ![GitHub](https://img.shields.io/github/license/demartis/symfony5-rest-api)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdemartis%2Fsymfony5-rest-api.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdemartis%2Fsymfony5-rest-api?ref=badge_shield)
 
@@ -15,7 +13,9 @@ Symfony 5 + FOSRestBundle + JSON Standard responses + working example
 ## Table of Contents
 + [About](#about)
 + [Getting Started](#getting_started)
++ [JTTP](#jttp)
 + [Contributing](#contributing)
++ [License](#license)
 
 
 
@@ -33,7 +33,60 @@ This project is compliant with:
 - [JTTP](https://github.com/demartis/jttp)
 - URIs versioning
 
-### JTTP Coherent output formats
+
+## Getting Started <a name = "getting_started"></a>
+
+These instructions will get you a copy of the project up and running on your local machine 
+for development and testing purposes. 
+
+### Prerequisites
+
+What things you need to install the software and how to install them.
+- PHP 7.2.5+
+- [composer](https://getcomposer.org/download/)
+- [symfony](https://symfony.com/doc/current/setup.html)
+- docker (optional)
+
+### Installing
+
+```bash
+git clone https://github.com/demartis/symfony5-rest-api/
+cd symfony5-rest-api
+cp .env.dist .env
+## edit .env if needed
+composer install
+symfony server:start
+```
+### Installing (alternative with Docker)
+
+```bash
+git clone https://github.com/demartis/symfony5-rest-api/
+cd symfony5-rest-api
+cp .env.dist .env
+## edit .env if needed
+docker-compose build
+docker-compose up
+```
+
+
+### Running the example
+
+#### Install database
+```bash
+php bin/console doctrine:database:create
+php bin/console doctrine:migrations:migrate
+```
+
+#### Get with Curl
+
+```bash
+curl -H 'content-type: application/json' -v -X GET http://127.0.0.1:8000/v1/books
+curl -H 'content-type: application/json' -v -X GET http://127.0.0.1:8000/v1/books/2 
+```
+
+
+
+## JTTP: Coherent output formats <a name = "jttp"></a>
 [JTTP](https://github.com/demartis/jttp) is the default protocol 
 
 General JTTP output format:
@@ -219,60 +272,10 @@ Response:
 ```
 
 
-## Getting Started <a name = "getting_started"></a>
-
-These instructions will get you a copy of the project up and running on your local machine 
-for development and testing purposes. 
-
-### Prerequisites
-
-What things you need to install the software and how to install them.
-- PHP 7.2.5+
-- [composer](https://getcomposer.org/download/)
-- [symfony](https://symfony.com/doc/current/setup.html)
-- docker (optional)
-
-### Installing
-
-```bash
-git clone https://github.com/demartis/symfony5-rest-api/
-cd symfony5-rest-api
-cp .env.dist .env
-## edit .env if needed
-composer install
-symfony server:start
-```
-### Installing (alternative with Docker)
-
-```bash
-git clone https://github.com/demartis/symfony5-rest-api/
-cd symfony5-rest-api
-cp .env.dist .env
-## edit .env if needed
-docker-compose build
-docker-compose up
-```
-
-
-### Running the example
-
-#### Install database
-```bash
-php bin/console doctrine:database:create
-php bin/console doctrine:migrations:migrate
-```
-
-#### Get with Curl
-
-```bash
-curl -H 'content-type: application/json' -v -X GET http://127.0.0.1:8000/v1/books
-curl -H 'content-type: application/json' -v -X GET http://127.0.0.1:8000/v1/books/2 
-```
-
 
 ## Using it as skeleton <a name = "usage"></a>
 
-Add notes about how to use the system.
+Use Fork capability and edit at your own 
 
 
 ## Contributing <a name = "contributing"></a>
@@ -284,7 +287,7 @@ Add notes about how to use the system.
 5. Create a new Pull Request
 
 
+## License <a name = "license"></a>
 
-## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdemartis%2Fsymfony5-rest-api.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdemartis%2Fsymfony5-rest-api?ref=badge_large)
 
