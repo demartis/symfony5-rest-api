@@ -337,17 +337,11 @@
             "src/Kernel.php"
         ]
     },
-    "symfony/http-client-contracts": {
-        "version": "v2.3.1"
-    },
     "symfony/http-foundation": {
         "version": "v5.0.6"
     },
     "symfony/http-kernel": {
         "version": "v5.0.6"
-    },
-    "symfony/intl": {
-        "version": "v5.0.7"
     },
     "symfony/maker-bundle": {
         "version": "1.0",
