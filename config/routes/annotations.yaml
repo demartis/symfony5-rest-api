@@ -5,3 +5,7 @@ controllers:
 kernel:
     resource: ../../src/Kernel.php
     type: annotation
+
+fixtures:
+    resource: ../../src/DataFixtures/
+    type: annotation

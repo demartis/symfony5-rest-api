@@ -28,6 +28,8 @@
         "willdurand/hateoas-bundle": "^2.1"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "*",
+        "fakerphp/faker": "*",
         "friends-of-behat/symfony-extension": "^2.1",
         "peekmo/jsonpath": "dev-master",
         "phpunit/phpunit": "^8.5",

@@ -2,10 +2,17 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
-book:
+meal:
   type: rest
-  resource: App\Controller\BookController
+  resource: App\Controller\MealController
   prefix: /v1
   name_prefix: v1_
   defaults: {_format: json}
+
+app_locales:
+  resource: '../src/DataFixtures/'
+  type: annotation
+  prefix:
+    en: '/en'
+    hr: '/hr'
 
