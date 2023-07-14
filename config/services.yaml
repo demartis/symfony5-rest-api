@@ -48,3 +48,6 @@ services:
         public: false
         calls:
             - ['registerHandler', [ 'json', ["@app.jttp_handler", 'createResponse'] ] ]
+
+    Faker\Generator:
+        class: Faker\Generator

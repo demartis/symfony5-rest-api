@@ -2,54 +2,58 @@
 
 namespace App\Entity;
 
-use DateTime;
 use Doctrine\ORM\Mapping as ORM;
-use Hateoas\Configuration\Annotation as Hateoas;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\MealRepository")
- *
- * @Hateoas\Relation(name ="self", href = "expr(container.get('router').generate( 'v1_get_meal' , {id: object.getId()}) )")
+ * @ORM\Entity
+ * @ORM\Table(name="meal")
  */
 class Meal
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
+     * @ORM\Id
+     * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=45)
      */
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=45)
      */
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=45)
      */
     private $status;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private $createdAt;
+    private $created_at;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $deletedAt;
+    private $deleted_at;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="string", length=45, nullable=true)
      */
-    private $updatedAt;
+    private $updated_at;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
+     */
+    private $category;
+
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -60,11 +64,9 @@ class Meal
         return $this->title;
     }
 
-    public function setDescription(string $description): self
+    public function setTitle(string $title): void
     {
-        $this->description = $description;
-
-        return $this;
+        $this->title = $title;
     }
 
     public function getDescription(): ?string
@@ -72,11 +74,9 @@ class Meal
         return $this->description;
     }
 
-    public function setTitle(string $title): self
+    public function setDescription(string $description): void
     {
-        $this->title = $title;
-
-        return $this;
+        $this->description = $description;
     }
 
     public function getStatus(): ?string
@@ -84,47 +84,48 @@ class Meal
         return $this->status;
     }
 
-    public function setStatus(string $status): self
+    public function setStatus(string $status): void
     {
         $this->status = $status;
-
-        return $this;
     }
 
-    public function getCreatedAt(): ?DateTime
+    public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->createdAt;
+        return $this->created_at;
     }
 
-    public function setCreatedAt(DateTime $createdAt): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): void
     {
-        $this->createdAt = $createdAt;
-
-        return $this;
+        $this->created_at = $createdAt;
     }
 
-    public function getUpdatedAt(): ?DateTime
+    public function getDeletedAt(): ?\DateTimeInterface
     {
-        return $this->updatedAt;
+        return $this->deleted_at;
     }
 
-    public function setUpdatedAt(DateTime $updatedAt): self
+    public function setDeletedAt(\DateTimeInterface $deletedAt): void
     {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
+        $this->deleted_at = $deletedAt;
     }
 
-    public function getDeletedAt(): ?DateTime
+    public function getUpdatedAt(): ?string
     {
-        return $this->deletedAt;
+        return $this->updated_at;
     }
 
-    public function setDeletedAt(DateTime $deletedAt): self
+    public function setUpdatedAt(string $updatedAt): void
     {
-        $this->deletedAt = $deletedAt;
-
-        return $this;
+        $this->updated_at = $updatedAt;
     }
 
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(Category $category): void
+    {
+        $this->category = $category;
+    }
 }

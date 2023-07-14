@@ -2,12 +2,10 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
-meal:
-  type: rest
-  resource: App\Controller\MealController
-  prefix: /v1
-  name_prefix: v1_
-  defaults: {_format: json}
+meals_get:
+    path: /api/meals
+    controller: App\Controller\MealController::index
+    methods: GET
 
 app_locales:
   resource: '../src/DataFixtures/'

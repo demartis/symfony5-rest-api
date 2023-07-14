@@ -2,14 +2,14 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Category;
+use App\Entity\Ingredient;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Faker\Factory;
 use Faker\Generator;
 
-class CategoryFixtures extends Fixture
+class IngredientFixtures extends Fixture
 {
     private $translator;
     private $faker;
@@ -33,15 +33,15 @@ class CategoryFixtures extends Fixture
             $this->faker->seed(1234);
             $this->translator->setLocale($locale);
 
-            for ($i=1; $i <= 10; $i++) { 
-                $category = new Category();
+            for ($i=1; $i <= 20; $i++) { 
+                $ingredient = new Ingredient();
 
-                $category->setSlug('category-' . $i);
-                $category->setTitle($this->translator->trans('Meal Category ' . $i));
+                $ingredient->setSlug('ingredient-' . $i);
+                $ingredient->setTitle($this->translator->trans('Ingredient name ' . $i));
                 
-                $data[] = $category;
+                $data[] = $ingredient;
 
-                //$manager->persist($category);
+                //$manager->persist($ingredient);
                 //$manager->flush();
             }
         }

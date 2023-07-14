@@ -3,18 +3,16 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Hateoas\Configuration\Annotation as Hateoas;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
- *
- * @Hateoas\Relation(name ="self", href = "expr(container.get('router').generate( 'v1_get_category' , {id: object.getId()}) )")
+ * @ORM\Entity
+ * @ORM\Table(name="category")
  */
 class Category
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
+     * @ORM\Id
+     * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -29,7 +27,7 @@ class Category
      */
     private $slug;
 
-
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -40,11 +38,9 @@ class Category
         return $this->title;
     }
 
-    public function setSlug(string $slug): self
+    public function setTitle(string $title): void
     {
-        $this->slug = $slug;
-
-        return $this;
+        $this->title = $title;
     }
 
     public function getSlug(): ?string
@@ -52,11 +48,8 @@ class Category
         return $this->slug;
     }
 
-    public function setTitle(string $title): self
+    public function setSlug(string $slug): void
     {
-        $this->title = $title;
-
-        return $this;
+        $this->slug = $slug;
     }
-
 }
