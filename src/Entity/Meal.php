@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -53,6 +55,33 @@ class Meal
      */
     private $category;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Tag")
+     * @ORM\JoinTable(
+     *     name="meal_has_tag",
+     *     joinColumns={@ORM\JoinColumn(name="meal_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
+     * )
+     */
+    private $tags;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Ingredient")
+     * @ORM\JoinTable(
+     *     name="meal_has_ingredient",
+     *     joinColumns={@ORM\JoinColumn(name="meal_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="ingredient_id", referencedColumnName="id")}
+     * )
+     */
+    private $ingredients;
+
+
+    public function __construct()
+    {
+        $this->tags = new ArrayCollection();
+        $this->ingredients = new ArrayCollection();
+
+    }
     
     public function getId(): ?int
     {
@@ -127,5 +156,39 @@ class Meal
     public function setCategory(Category $category): void
     {
         $this->category = $category;
+    }
+
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
+
+    public function addTag(Tag $tag): void
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+        }
+    }
+
+    public function removeTag(Tag $tag): void
+    {
+        $this->tags->removeElement($tag);
+    }
+
+    public function getIngredients(): Collection
+    {
+        return $this->ingredients;
+    }
+
+    public function addIngredient(Ingredient $ingredient): void
+    {
+        if (!$this->ingredients->contains($ingredient)) {
+            $this->ingredients[] = $ingredient;
+        }
+    }
+
+    public function removeIngredient(Ingredient $ingredient): void
+    {
+        $this->ingredients->removeElement($ingredient);
     }
 }
