@@ -22,7 +22,7 @@ class MealController extends AbstractController
         $this->paramsValidator = $paramsValidator;
     }
 
-    #[Route('/meals', name: 'meals_get', methods:['get'])]
+    #[Route('/meals', name: 'meals_get', methods: ['get'])]
     public function index(Request $request): JsonResponse
     {
 
@@ -36,12 +36,12 @@ class MealController extends AbstractController
         $category = $request->query->get('category');
         $tags = $request->query->get('tags');
         $with = $request->query->get('with');
-        $lang = $request->query->get('lang');
+        $lang = $this->mealHelper->getLanguageId($request->query->get('lang'));
         $diffTime = $request->query->get('diff_time');
 
         $repository = $this->getDoctrine()->getRepository(Meal::class);
         $queryBuilder = $repository->createQueryBuilder('m')
-            ->select('m.id, t.title, t.description, m.status')
+            ->select('DISTINCT m.id, m.title, m.description, m.status')
             ->leftJoin('m.category', 'c')
             ->leftJoin('m.tags', 't2')
             ->leftJoin('m.ingredients', 'i');
@@ -70,6 +70,14 @@ class MealController extends AbstractController
 
         $results = $queryBuilder->getQuery()->getArrayResult();
 
+        $translatedResults = [];
+        foreach ($results as $result) {
+            $translatedResult = $result;
+            $translatedResult['title'] = $this->mealHelper->translate($result['title'], $lang);
+            $translatedResult['description'] = $this->mealHelper->translate($result['description'], $lang);
+            $translatedResults[] = $translatedResult;
+        }
+
         $totalItems = $this->mealHelper->countTotalItems($queryBuilder);
         $totalPages = ceil($totalItems / $perPage);
 
@@ -80,7 +88,7 @@ class MealController extends AbstractController
                 'itemsPerPage' => $perPage,
                 'totalPages' => $totalPages,
             ],
-            'data' => $results,
+            'data' => $translatedResults,
             'links' => [
                 'prev' => ($page > 1) ? $this->mealHelper->generateUrl($request, $page - 1) : null,
                 'next' => ($page < $totalPages) ? $this->mealHelper->generateUrl($request, $page + 1) : null,

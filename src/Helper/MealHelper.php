@@ -2,9 +2,25 @@
 
 namespace App\Helper;
 
+use App\Repository\LanguageRepository;
+use App\Repository\TranslationRepository;
+
+
 
 class MealHelper
 {
+    private $translationRepository;
+    private $languageRepository;
+
+    public function __construct(
+        TranslationRepository $translationRepository,
+        LanguageRepository $languageRepository
+    )
+    {
+        $this->translationRepository = $translationRepository;
+        $this->languageRepository = $languageRepository;
+
+    }
 
     public function countTotalItems($queryBuilder): int
     {
@@ -21,5 +37,17 @@ class MealHelper
         $queryString = http_build_query($queryParameters);
 
         return $request->getSchemeAndHttpHost() . $request->getPathInfo() . '?' . $queryString;
+    }
+
+    public function translate(string $keyword, string $lang): ?string
+    {
+        $translation = $this->translationRepository->findOneBy(['keyword' => $keyword, 'language' => $lang]);
+
+        return $translation ? $translation->getValue() : null;
+    }
+
+    public function getLanguageId(string $name): ?int
+    {
+        return $this->languageRepository->findByName($name)->getId();
     }
 }
