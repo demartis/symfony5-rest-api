@@ -28,7 +28,7 @@ Symfony 5 skeleton to build REST APIs, inclusive of:
 
 
 This project is compliant with:
-- [Symfony Best Practices](https://symfony.com/doc/current/best_practices.html)
+- [Symfony Best Practices](https://symfony.com/doc/5.4/best_practices.html)
 - [HATEOAS](https://restfulapi.net/hateoas/), [RFC5988 (web links)](https://tools.ietf.org/html/rfc5988), [JSON HAL Model](http://stateless.co/hal_specification.html)
 - [JTTP](https://github.com/demartis/jttp)
 - URIs versioning
@@ -44,7 +44,7 @@ for development and testing purposes.
 What things you need to install the software and how to install them.
 - PHP 7.2.5+
 - [composer](https://getcomposer.org/download/)
-- [symfony](https://symfony.com/doc/current/setup.html)
+- [symfony](https://symfony.com/doc/5.4/setup.html)
 - docker (optional)
 
 ### Installing
