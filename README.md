@@ -9,6 +9,11 @@ Symfony 5 + FOSRestBundle + JSON Standard responses + working example
 ![GitHub](https://img.shields.io/github/license/demartis/symfony5-rest-api)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdemartis%2Fsymfony5-rest-api.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdemartis%2Fsymfony5-rest-api?ref=badge_shield)
 
+--------------------------------------
+
+⚠️ PHP 8.x required. If your server is still running PHP 7.x switch to `php7` branch.
+
+--------------------------------------
 
 ## Table of Contents
 + [About](#about)
@@ -42,7 +47,7 @@ for development and testing purposes.
 ### Prerequisites
 
 What things you need to install the software and how to install them.
-- PHP 7.2.5+
+- PHP 8.x. For PHP 7 (7.2.5+) use branch `php7`
 - [composer](https://getcomposer.org/download/)
 - [symfony](https://symfony.com/doc/5.4/setup.html)
 - docker (optional)
@@ -75,6 +80,11 @@ docker-compose up
 ```bash
 php bin/console doctrine:database:create
 php bin/console doctrine:migrations:migrate
+```
+
+#### Run local server with Symfony app
+```bash
+symfony server:start
 ```
 
 #### Get with Curl
