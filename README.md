@@ -2,6 +2,7 @@
 
 Symfony 5 + FOSRestBundle + JSON Standard responses + working example
 
+
 ![GitHub last commit](https://img.shields.io/github/last-commit/demartis/symfony5-rest-api.svg)
 ![GitHub repo size in bytes](https://img.shields.io/github/repo-size/demartis/symfony5-rest-api.svg)
 ![GitHub language count](https://img.shields.io/github/languages/count/demartis/symfony5-rest-api.svg)
@@ -9,6 +10,12 @@ Symfony 5 + FOSRestBundle + JSON Standard responses + working example
 ![GitHub](https://img.shields.io/github/license/demartis/symfony5-rest-api)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdemartis%2Fsymfony5-rest-api.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdemartis%2Fsymfony5-rest-api?ref=badge_shield)
 
+---------------------------------------
+
+⚠️This branch exists for backwards compatibility with old servers still running PHP 7.x. 
+It is highly recommended to upgrade to PHP 8 and clone `master` branch.  
+
+---------------------------------------
 
 ## Table of Contents
 + [About](#about)
