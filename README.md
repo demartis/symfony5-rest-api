@@ -11,7 +11,7 @@ Symfony 5 + FOSRestBundle + JSON Standard responses + working example
 
 --------------------------------------
 
-⚠️ PHP 8.x required. If your server is still running PHP 7.x switch to `php7` branch.
+⚠️ PHP 8.x required. If your server is still running PHP 7.x switch to [php7](https://github.com/demartis/symfony5-rest-api/tree/php7) branch.
 
 --------------------------------------
 
